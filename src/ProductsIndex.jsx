@@ -6,7 +6,12 @@ export function ProductsIndex(props) {
       {/* {JSON.stringify(props.products)} */}
       {props.products.map(product => (
         <div key={product.id}>
-          {product.name}
+          <p>{product.name}</p>
+          <p>{product.price}</p>
+          <p>{product.description}</p>
+          {/* <p>{JSON.stringify(product.images[0].url)}</p> */}
+          {/* <p>{product.images[0] && product.images[0].url}</p> */}
+          <img src={product.images[0] && product.images[0].url} />
         </div>
       ))}
     </div>
