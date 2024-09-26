@@ -12,6 +12,7 @@ export function ProductsIndex(props) {
           {/* <p>{JSON.stringify(product.images[0].url)}</p> */}
           {/* <p>{product.images[0] && product.images[0].url}</p> */}
           <img src={product.images[0] && product.images[0].url} />
+          <button onClick={() => props.onShow(product)}>Edit this product</button>
         </div>
       ))}
     </div>
