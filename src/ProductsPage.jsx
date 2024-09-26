@@ -6,8 +6,8 @@ import axios from 'axios'
 
 export function ProductsPage() {
   const [products, setProducts] = useState([])
-  const [isPhotosShowVisible, setIsPhotosShowVisible] = useState(false);
-  const [currentPhoto, setCurrentPhoto] = useState({});
+  const [isProductsShowVisible, setIsProductsShowVisible] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState({});
 
 
   const handleProductsIndex = () => {
@@ -18,16 +18,33 @@ export function ProductsPage() {
     })
   }
 
-  const handleShow = (photo) => {
-    console.log("handleShow", photo);
-    setIsPhotosShowVisible(true);
-    setCurrentPhoto(photo);
+  const handleShow = (product) => {
+    console.log("handleShow", product);
+    setIsProductsShowVisible(true);
+    setCurrentProduct(product);
   };
     
   const handleClose = () => {
     console.log("handleClose");
-    setIsPhotosShowVisible(false);
+    setIsProductsShowVisible(false);
   };
+
+  const handleUpdateProduct = (params, id) => {
+    console.log('handling update product')
+    axios.patch(`http://localhost:3000/products/${id}.json`, params).then(response => {
+      console.log(response.data)
+      // update the products array
+      setProducts(products.map(product => {
+        if (product.id !== id) {
+          return product
+        } else {
+          return response.data;
+        }
+      }))
+      handleClose();
+
+    })
+  }
 
   useEffect(handleProductsIndex, [])
   
@@ -35,8 +52,8 @@ export function ProductsPage() {
     <main>
       <h1>Welcome to React!</h1>
       <ProductsIndex products={products} onShow={handleShow} />
-      <Modal show={isPhotosShowVisible} onClose={handleClose}>
-        <ProductsEdit />
+      <Modal show={isProductsShowVisible} onClose={handleClose}>
+        <ProductsEdit product={currentProduct} onUpdateProduct={handleUpdateProduct} />
       </Modal>
       {/* <button onClick={handleProductsIndex}>get data</button> */}
     </main>
