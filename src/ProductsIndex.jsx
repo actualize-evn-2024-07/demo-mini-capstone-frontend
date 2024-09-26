@@ -11,7 +11,11 @@ export function ProductsIndex(props) {
           <p>{product.description}</p>
           {/* <p>{JSON.stringify(product.images[0].url)}</p> */}
           {/* <p>{product.images[0] && product.images[0].url}</p> */}
-          <img src={product.images[0] && product.images[0].url} />
+          {/* <img src={product.images_with_default[0] && product.images_with_default[0].url} /> */}
+          {product.images_with_default.map(image => (
+            <img key={image.id} src={image.url} />
+          ))}
+          {/* <img src={product.friendly_image} /> */}
           <button onClick={() => props.onShow(product)}>Edit this product</button>
         </div>
       ))}
