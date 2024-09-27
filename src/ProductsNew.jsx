@@ -28,6 +28,15 @@ export function ProductsNew() {
         <div>
           supplier_id: <input name="supplier_id" type="text" />
         </div>
+        <label>Item 1:</label>
+        <input type="text" name="image_urls[]" /><br />
+
+        <label>Item 2:</label>
+        <input type="text" name="image_urls[]" /><br />
+
+        <label>Item 3:</label>
+        <input type="text" name="image_urls[]" /><br />
+
         <button type="submit">Create</button>
       </form>
     </div>
