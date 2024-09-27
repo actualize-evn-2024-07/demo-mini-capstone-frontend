@@ -1,6 +1,9 @@
+import {useState} from 'react'
 import axios from 'axios'
 
 export function ProductsNew() {
+  const [imageUrls, setImageUrls] = useState(["", ""])
+  
   const handleSubmit = (event) => {
     event.preventDefault()
     // collect params from the form
@@ -10,6 +13,11 @@ export function ProductsNew() {
       console.log(response.data)
     })
     console.log('handling submit')
+  }
+
+  const addImage = () => {
+    console.log('here is a new image')
+    setImageUrls([...imageUrls, ""]);
   }
   
   return (
@@ -28,17 +36,17 @@ export function ProductsNew() {
         <div>
           supplier_id: <input name="supplier_id" type="text" />
         </div>
-        <label>Item 1:</label>
-        <input type="text" name="image_urls[]" /><br />
+        {imageUrls.map((imageUrl, index) => (
+          <div key={index}>
+            <input  type="text" name="image_urls[]" /><br />
+          </div>
+        ))}
 
-        <label>Item 2:</label>
-        <input type="text" name="image_urls[]" /><br />
 
-        <label>Item 3:</label>
-        <input type="text" name="image_urls[]" /><br />
 
         <button type="submit">Create</button>
       </form>
+      <button onClick={addImage}>Add extra image</button>
     </div>
   );
 }
