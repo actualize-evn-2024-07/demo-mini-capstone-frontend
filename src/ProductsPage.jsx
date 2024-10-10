@@ -1,6 +1,7 @@
 import { ProductsIndex } from './ProductsIndex'
 import { ProductsEdit } from './ProductsEdit'
 import { ProductsNew } from './ProductsNew'
+import { CartedProductsNew } from './CartedProductsNew'
 import { Modal } from './Modal'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
@@ -11,7 +12,9 @@ export function ProductsPage() {
   const products = useLoaderData()
   console.log(useLoaderData())
   const [isProductsShowVisible, setIsProductsShowVisible] = useState(false);
+  const [isCartedProductsNewVisible, setIsCartedProductsNewVisible] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
+  
 
 
   // const handleProductsIndex = () => {
@@ -27,10 +30,21 @@ export function ProductsPage() {
     setIsProductsShowVisible(true);
     setCurrentProduct(product);
   };
+
+  const handleShowAddToCart = (product) => {
+    console.log("handleShow", product);
+    setIsCartedProductsNewVisible(true);
+    setCurrentProduct(product);
+  };
     
   const handleClose = () => {
     console.log("handleClose");
     setIsProductsShowVisible(false);
+  };
+
+  const handleCloseCPN = () => {
+    console.log("handleClose");
+    setIsCartedProductsNewVisible(false);
   };
 
   const handleUpdateProduct = (params, id) => {
@@ -56,9 +70,12 @@ export function ProductsPage() {
     <main>
       <h1>Welcome to React!</h1>
       <ProductsNew />
-      <ProductsIndex products={products} onShow={handleShow} />
+      <ProductsIndex products={products} onShow={handleShow} onShowAddToCart={handleShowAddToCart} />
       <Modal show={isProductsShowVisible} onClose={handleClose}>
         <ProductsEdit product={currentProduct} onUpdateProduct={handleUpdateProduct} />
+      </Modal>
+      <Modal show={isCartedProductsNewVisible}  onClose={handleCloseCPN}>
+        <CartedProductsNew product={currentProduct} />
       </Modal>
       {/* <button onClick={handleProductsIndex}>get data</button> */}
     </main>

@@ -17,9 +17,15 @@ export function ProductsIndex(props) {
           ))}
           {/* <img src={product.friendly_image} /> */}
           <br />
-          <button onClick={() => props.onShow(product)}>Edit this product</button>
+          <button onClick={() => props.onShow(product)}>Edit this product</button>          
+          <button onClick={() => props.onShowAddToCart(product)}>Add to cart</button>          
+          <hr />
+          <hr />
+          <hr />
+          <hr />
         </div>
       ))}
+      
     </div>
   );
 }
