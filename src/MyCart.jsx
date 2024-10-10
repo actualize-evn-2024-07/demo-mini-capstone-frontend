@@ -1,10 +1,17 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 export function MyCart() {
   const cartedProducts = useLoaderData()
   console.log(cartedProducts);
   
-  
+  const purchase = () => {
+    console.log('purchase');
+    axios.post("http://localhost:3000/orders.json").then(response => {
+      console.log(response.data)
+    })
+
+  }
   
   // get data from rails
   // display data to user
@@ -20,6 +27,7 @@ export function MyCart() {
           <hr />
         </div>
       ))}
+      <button onClick={purchase}>Purchase</button>
     </div>
   )
 }
