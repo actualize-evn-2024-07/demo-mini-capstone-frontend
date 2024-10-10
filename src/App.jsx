@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import { ProductsPage } from "./ProductsPage";
 import { SignupPage } from "./SignupPage";
 import { LoginPage } from "./LoginPage";
+import { MyCart } from "./MyCart";
 import { Footer } from "./Footer";
 
 const router = createBrowserRouter([
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginPage />,
+      },
+      {
+        path: "/my_cart",
+        element: <MyCart />,
+        loader: () => axios.get("http://localhost:3000/carted_products.json").then(response => response.data)
       },
     ],
   },
