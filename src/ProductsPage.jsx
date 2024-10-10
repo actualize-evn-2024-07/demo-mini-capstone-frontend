@@ -4,20 +4,23 @@ import { ProductsNew } from './ProductsNew'
 import { Modal } from './Modal'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
+import { useLoaderData, useNavigate } from "react-router-dom";
+
 
 export function ProductsPage() {
-  const [products, setProducts] = useState([])
+  const products = useLoaderData()
+  console.log(useLoaderData())
   const [isProductsShowVisible, setIsProductsShowVisible] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
 
-  const handleProductsIndex = () => {
-    console.log('in products index')
-    axios.get("http://localhost:3000/products.json").then(response => {
-      console.log(response.data)
-      setProducts(response.data)
-    })
-  }
+  // const handleProductsIndex = () => {
+  //   console.log('in products index')
+  //   axios.get("http://localhost:3000/products.json").then(response => {
+  //     console.log(response.data)
+  //     setProducts(response.data)
+  //   })
+  // }
 
   const handleShow = (product) => {
     console.log("handleShow", product);
@@ -47,7 +50,7 @@ export function ProductsPage() {
     })
   }
 
-  useEffect(handleProductsIndex, [])
+  // useEffect(handleProductsIndex, [])
   
   return (
     <main>

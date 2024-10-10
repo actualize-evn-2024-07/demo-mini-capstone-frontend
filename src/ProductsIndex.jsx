@@ -16,6 +16,7 @@ export function ProductsIndex(props) {
             <img key={image.id} src={image.url} />
           ))}
           {/* <img src={product.friendly_image} /> */}
+          <br />
           <button onClick={() => props.onShow(product)}>Edit this product</button>
         </div>
       ))}
