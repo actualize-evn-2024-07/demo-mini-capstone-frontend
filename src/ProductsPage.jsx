@@ -9,7 +9,9 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 
 
 export function ProductsPage() {
-  const products = useLoaderData()
+  const products = useLoaderData()["products"]
+  const suppliers = useLoaderData()["suppliers"]
+  console.log(suppliers)
   console.log(useLoaderData())
   const [isProductsShowVisible, setIsProductsShowVisible] = useState(false);
   const [isCartedProductsNewVisible, setIsCartedProductsNewVisible] = useState(false);
@@ -69,8 +71,8 @@ export function ProductsPage() {
   return (
     <main>
       <h1>Welcome to React!</h1>
-      <ProductsNew />
-      <ProductsIndex products={products} onShow={handleShow} onShowAddToCart={handleShowAddToCart} />
+      <ProductsNew suppliers={suppliers} />
+      <ProductsIndex products={products}  onShow={handleShow} onShowAddToCart={handleShowAddToCart} />
       <Modal show={isProductsShowVisible} onClose={handleClose}>
         <ProductsEdit product={currentProduct} onUpdateProduct={handleUpdateProduct} />
       </Modal>

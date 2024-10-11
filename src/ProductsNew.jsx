@@ -1,7 +1,8 @@
 import {useState} from 'react'
 import axios from 'axios'
 
-export function ProductsNew() {
+export function ProductsNew(props) {
+  
   const [imageUrls, setImageUrls] = useState(["", ""])
   
   const handleSubmit = (event) => {
@@ -35,8 +36,11 @@ export function ProductsNew() {
         </div>
         <label htmlFor="supplier_id">Choose a car:</label>
         <select name="supplier_id" id="supplier_id">
-          <option value="2">Target</option>
-          <option value="1">Best Buy</option>          
+          {props.suppliers.map(supplier => (
+            <option key={supplier.id} value={supplier.id}>{supplier.name}</option>
+
+          ))}
+          
         </select>
        
         {imageUrls.map((imageUrl, index) => (
