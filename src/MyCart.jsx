@@ -3,14 +3,15 @@ import axios from 'axios'
 
 export function MyCart() {
   const cartedProducts = useLoaderData()
+  const navigate = useNavigate()
   console.log(cartedProducts);
   
   const purchase = () => {
     console.log('purchase');
     axios.post("http://localhost:3000/orders.json").then(response => {
       console.log(response.data)
+      navigate(`/orders/${response.data.id}`)
     })
-
   }
   
   // get data from rails
