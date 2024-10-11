@@ -9,6 +9,7 @@ export function ProductsIndex(props) {
           <p>{product.name}</p>
           <p>{product.price}</p>
           <p>{product.description}</p>
+          <p>{product.supplier && product.supplier.name}</p>
           {/* <p>{JSON.stringify(product.images[0].url)}</p> */}
           {/* <p>{product.images[0] && product.images[0].url}</p> */}
           {/* <img src={product.images_with_default[0] && product.images_with_default[0].url} /> */}

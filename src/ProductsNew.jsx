@@ -33,9 +33,12 @@ export function ProductsNew() {
         <div>
           description: <input name="description" type="text" />
         </div>
-        <div>
-          supplier_id: <input name="supplier_id" type="text" />
-        </div>
+        <label htmlFor="supplier_id">Choose a car:</label>
+        <select name="supplier_id" id="supplier_id">
+          <option value="2">Target</option>
+          <option value="1">Best Buy</option>          
+        </select>
+       
         {imageUrls.map((imageUrl, index) => (
           <div key={index}>
             <input  type="text" name="image_urls[]" /><br />
