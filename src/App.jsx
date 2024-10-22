@@ -7,6 +7,8 @@ import { SignupPage } from "./SignupPage";
 import { LoginPage } from "./LoginPage";
 import { MyCart } from "./MyCart";
 import { Footer } from "./Footer";
+import { Contact } from "./Contact";
+
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
         element: <OrdersShow />,
         loader: ({params}) => axios.get(`http://localhost:3000/orders/${params.id}.json`).then(response => response.data)
       },
+      {
+        path: "/contact",
+        element: <Contact />
+      }
     ],
   },
 ]);
