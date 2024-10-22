@@ -9,8 +9,8 @@ export function Contact() {
     e.preventDefault();
 
     emailjs
-      .sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, {
-        publicKey: 'YOUR_PUBLIC_KEY',
+      .sendForm(import.meta.env.VITE_APP_SERVICE_ID, import.meta.env.VITE_APP_TEMPLATE_ID, form.current, {
+        publicKey: import.meta.env.VITE_APP_PUBLIC_KEY,
       })
       .then(
         () => {
@@ -23,18 +23,20 @@ export function Contact() {
   };
 
   return(
-    <form ref={form} onSubmit={sendEmail}>
-      <div>
-        <input type="text" name="user_name" placeholder="Full Name" />
-        <input type="text" name="email" placeholder="Email" />
-      </div>
-      <div>
-        <input type="text" name="phone_number" placeholder="Phone Number" />
-        <input type="text" name="subject" placeholder="subject" />
-      </div>
-      <textarea name="message" placeholder="Your Message" />
-      <input type="submit" value="send" />
-
-    </form>
+    <div>
+      <h1>Contact Me</h1>
+      <form ref={form} onSubmit={sendEmail}>
+        <div>
+          <input type="text" name="user_name" placeholder="Full Name" />
+          <input type="text" name="email" placeholder="Email" />
+        </div>
+        <div>
+          <input type="text" name="phone_number" placeholder="Phone Number" />
+          <input type="text" name="subject" placeholder="subject" />
+        </div>
+        <textarea name="message" placeholder="Your Message" />
+        <input type="submit" value="send" />
+      </form>
+    </div>
   )
 }
